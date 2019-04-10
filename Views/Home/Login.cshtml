@@ -1,0 +1,19 @@
+@model User
+
+<form>
+    
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="Email"></span>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="Password"></span>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control">
+    </div>
+
+    <button formaction="login" formmethod="post" class="btn btn-primary">Login</button>
+    <button formaction="RegistrationForm" formmethod="post" class="btn btn-primary">Register</button>
+</form>

@@ -1,0 +1,36 @@
+﻿@model User
+
+<form>
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="FristName"></span>
+        <label asp-for="FristName"></label>
+        <input asp-for="FristName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="LastName"></span>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="Email"></span>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="Password"></span>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <span class="errorMessage" asp-validation-for="Confirm"></span>
+        <label asp-for="Confirm"></label>
+        <input asp-for="Confirm" class="form-control">
+    </div>
+
+    <button formaction="register" formmethod="post" class="btn btn-primary">Sign up Now</button>
+    <button formaction="LoginForm" formmethod="post" class="btn btn-primary">Already Have an account. Login</button>
+</form>
