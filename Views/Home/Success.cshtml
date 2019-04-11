@@ -1,2 +1,46 @@
+@model UserTransaction
 
-<h1>Success Page</h1>
+<div class="header">
+    Welcome, @ViewBag.Email
+    @{
+        double sum = 0.0;
+    }
+    @foreach (var u in @Model.user.Transactions)
+    {
+        sum += u.Amount;
+    }
+    @{
+        <span>
+            Current Balance: @sum
+        </span>
+    }
+</div>
+<hr>
+
+@{
+    ViewData["UserId"] = @Model.user.UserId;
+}
+<partial name="DipositWithdrawPartial" model="@Model.transaction" view-data="ViewData"/>
+
+<br>
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in @Model.user.Transactions)
+        {
+            <tr>
+                <td>
+                    @u.Amount
+                </td>
+                <td>
+                    @u.CreatedAt
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

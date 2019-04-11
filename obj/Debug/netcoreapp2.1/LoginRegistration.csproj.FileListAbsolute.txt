@@ -27,3 +27,4 @@ C:\Users\yofet\Desktop\Practice-Projects\Coding Dojo Info\4. DotNet Stack\3. ORM
 C:\Users\yofet\Desktop\Practice-Projects\Coding Dojo Info\4. DotNet Stack\3. ORMs\LoginRegistration\obj\Debug\netcoreapp2.1\Razor\Views\Home\Login.g.cshtml.cs
 C:\Users\yofet\Desktop\Practice-Projects\Coding Dojo Info\4. DotNet Stack\3. ORMs\LoginRegistration\obj\Debug\netcoreapp2.1\Razor\Views\Home\Success.g.cshtml.cs
 C:\Users\yofet\Desktop\Practice-Projects\Coding Dojo Info\4. DotNet Stack\3. ORMs\LoginRegistration\obj\Debug\netcoreapp2.1\Razor\Views\Shared\NavPartial.g.cshtml.cs
+C:\Users\yofet\Desktop\Practice-Projects\Coding Dojo Info\4. DotNet Stack\3. ORMs\LoginRegistration\obj\Debug\netcoreapp2.1\Razor\Views\Home\DipositWithdrawPartial.g.cshtml.cs

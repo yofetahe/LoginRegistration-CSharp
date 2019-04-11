@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LoginRegistration.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 using Microsoft.AspNetCore.Identity;
 
@@ -102,10 +103,58 @@ namespace LoginRegistration.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Email = HttpContext.Session.GetString("email");
+            ViewBag.Email = HttpContext.Session.GetString("email");                        
             ViewBag.userFlag = "true";
 
-            return View("Success");
+            // get the list of users
+            User userInfo = dbContext.Users
+                .Include(u => u.Transactions)
+                .SingleOrDefault(u => u.Email == HttpContext.Session.GetString("email"));
+            // sort based on the child - transaction
+            userInfo.Transactions = userInfo.Transactions
+                .OrderByDescending(u => u.CreatedAt)
+                .ToList();
+           
+            UserTransaction ut = new UserTransaction();
+            ut.user = userInfo;
+
+            return View("Success", ut);
+        }
+
+        [HttpPost("depositWithdraw/{UserId}")]
+        public IActionResult depositWithdraw(int UserId, Transaction transaction)
+        {
+            if(ModelState.IsValid)
+            {
+                User userInfo = dbContext.Users
+                .Include(u => u.Transactions)
+                .SingleOrDefault(u => u.UserId == UserId);
+
+                double sum = 0;
+                foreach(Transaction t in userInfo.Transactions)
+                {
+                    sum += t.Amount;
+                }
+                
+                if(transaction.Amount < 0 && transaction.Amount*-1 > sum)
+                {
+                    ModelState.AddModelError("Amount", "You are not allowed to withdraw this value. The max you can " + sum + "only");
+                   
+                    ViewBag.Email = HttpContext.Session.GetString("email");                        
+                    ViewBag.userFlag = "true";
+
+                    UserTransaction ut = new UserTransaction();
+                    ut.user = userInfo;
+
+                    return View("Success", ut);
+                }
+
+                transaction.UserId = UserId;
+                dbContext.Add(transaction);
+                dbContext.SaveChanges();
+                
+            }
+            return RedirectToAction("Success");
         }
 
         [HttpGet("logout")]

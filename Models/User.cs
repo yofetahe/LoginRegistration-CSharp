@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace LoginRegistration.Models
 {
@@ -39,5 +40,7 @@ namespace LoginRegistration.Models
        [DataType(DataType.Password)]
        [Display(Name="Confirm Password")]
        public string Confirm {get; set; }
+
+        public List<Transaction> Transactions { get; set; } = new List<Transaction>();
     }
 }

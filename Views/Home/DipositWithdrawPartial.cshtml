@@ -1,0 +1,14 @@
+@model Transaction
+@{
+    int UserId = (int) ViewData["UserId"];
+}
+<div class="balance-form">
+    <form action="depositWithdraw/@UserId" method="post">
+        <div class="form-group">
+            <span asp-validate-for="Amount" class="errorMessage"></span>
+            <label asp-for="Amount"></label>
+            <input asp-for="Amount" class="form-control">
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
